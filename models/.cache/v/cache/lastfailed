@@ -1,0 +1,5 @@
+{
+  "mobilenetv2.py::test": true,
+  "resnet.py::test": true,
+  "shufflenet.py::test": true
+}
