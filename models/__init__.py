@@ -17,3 +17,4 @@ from .darknet_53 import *
 from .darknet_19 import *
 from .peleenet import *
 from .dlanet import *
+from .squeezenet import *
