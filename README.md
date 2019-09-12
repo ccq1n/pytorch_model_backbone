@@ -31,5 +31,8 @@ The project is based on pytorch and integrates the current mainstream network ar
 | DLA-X-60-C  | 1.337765       | 0.20156  | 58.84        |       |       |
 | DLA-X-60    | 17.650853      | 1.19517  | 123.93       |       |       |
 | DLA-X-102   | 26.773157      | 1.79389  | 175.93       |       |       |
+| SqueezeNet  | 1.2524         | 0.84681  | 102.32       | 57.5  | 80.3  |
+| SqueezeNet + Simple Bypass   |       |   |        |  60.4     | 82.5   |
+|SqueezeNet + Complex Bypass   |       |   |        |  58.8     | 82.0   |
 
 input size: (1,3,224,224)
