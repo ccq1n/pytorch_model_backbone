@@ -3,72 +3,41 @@ from models import *
 import time
 import csv
 
-# net = VGG('VGG11')
-# net = VGG('VGG13')
-# net = VGG('VGG16')
-# net = VGG('VGG19')
-# net = ResNet18()
-# net = ResNet34()
-# net = ResNet50()
-# net = ResNet101()
-# net = ResNet152()
-# net = PreActResNet18()
-# net = PreActResNet34()
-# net = PreActResNet50()
-# net = PreActResNet101()
-# net = PreActResNet152()
-# net = ResNeXt29_2x64d()
-# net = ResNeXt29_4x64d()
-# net = ResNeXt29_8x64d()
-# net = ResNeXt29_32x4d()
-# net = DenseNet121()
-# net = DenseNet161()
-# net = DenseNet169()
-# net = DenseNet201()
-
-# net = GoogLeNet()
-
-# net = SENet18()
-
-# net = EfficientNetB0()
-
-# net = MobileNet()
-# net = MobileNetV2()
-# net = ShuffleNetG2()
-# net = ShuffleNetG3()
-# net = ShuffleNetV2(1)  # 0.5 1 1.5 2
-
-# net = DPN26()
-# net = DPN92()
-
 annotations_new = {
-               'VGG11': VGG('VGG11'),
-               'VGG13': VGG('VGG13'),
-               'VGG16': VGG('VGG16'),
-               'VGG19': VGG('VGG19'),
-               'ResNet18': ResNet18(),
-               'ResNet34': ResNet34(),
-               'ResNet50': ResNet50(),
-               'ResNet101': ResNet101(),
-               'ResNet152': ResNet152(),
-               'MobileNetV2': MobileNetV2(),
-               'DarkNet53': DarkNet_53(),
-               'DarkNet19': DarkNet_19(),
-               'MobileNet': MobileNet(),
-               'PeleeNet': PeleeNet(),
-               'DenseNet121': DenseNet121(),
-               'DenseNet169': DenseNet169(),
-               'DenseNet201': DenseNet201(),
-               'DenseNet264': DenseNet264(),
-               'DLANet34': DLANet34(),
-               'DLANet46_C': DLANet46_C(),
-               'DLANet60': DLANet60(),
-               'DLANet102': DLANet102(),
-               'DLANet169': DLANet169(),
-               'DLANetX46_C': DLANetX46_C(),
-               'DLANetX60_C': DLANetX60_C(),
-               'DLANetX60': DLANetX60(),
-               'DLANetX102': DLANetX102(),
+    'VGG11': VGG('VGG11'),
+    'VGG13': VGG('VGG13'),
+    'VGG16': VGG('VGG16'),
+    'VGG19': VGG('VGG19'),
+    'ResNet18': ResNet18(),
+    'ResNet34': ResNet34(),
+    'ResNet50': ResNet50(),
+    'ResNet101': ResNet101(),
+    'ResNet152': ResNet152(),
+    'MobileNetV2': MobileNetV2(),
+    'DarkNet53': DarkNet_53(),
+    'DarkNet19': DarkNet_19(),
+    'MobileNet': MobileNet(),
+    'PeleeNet': PeleeNet(),
+    'DenseNet121': DenseNet121(),
+    'DenseNet169': DenseNet169(),
+    'DenseNet201': DenseNet201(),
+    'DenseNet264': DenseNet264(),
+    'DLANet34': DLANet34(),
+    'DLANet46_C': DLANet46_C(),
+    'DLANet60': DLANet60(),
+    'DLANet102': DLANet102(),
+    'DLANet169': DLANet169(),
+    'DLANetX46_C': DLANetX46_C(),
+    'DLANetX60_C': DLANetX60_C(),
+    'DLANetX60': DLANetX60(),
+    'DLANetX102': DLANetX102(),
+    'SqueezeNet': SqueezeNet(),
+    'SqueezeNet_Simple': SqueezeNet_Simple(),
+    'SqueezeNet_Complex': SqueezeNet_Complex(),
+    '1.0-SqNxt-23': SqNxt_x1_23(),
+    '1.0-SqNxt-23v5': SqNxt_x1_23v5(),
+    '2.0-SqNxt-23': SqNxt_x2_23(),
+    '2.0-SqNxt-23v5': SqNxt_x2_23v5(),
 }
 
 annotations = {'PreActResNet18': PreActResNet18(),
@@ -266,7 +235,7 @@ def calculate_time_cost(model, insize=32, toc=1, use_gpu=False, pritout=False):
 #
 #     writer.writerow(["", "million", "G", "ms"])
 
-net = annotations_new['DLANetX102']
+net = annotations_new['2.0-SqNxt-23v5']
 calculate_params_scale(net, format='million')
 calculate_FLOPs_scale(net, input_size=224, use_gpu=False, multiply_adds=False)
 calculate_layers_num(net)

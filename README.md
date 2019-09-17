@@ -32,7 +32,12 @@ The project is based on pytorch and integrates the current mainstream network ar
 | DLA-X-60    | 17.650853      | 1.19517  | 123.93       |       |       |
 | DLA-X-102   | 26.773157      | 1.79389  | 175.93       |       |       |
 | SqueezeNet  | 1.2524         | 0.84681  | 102.32       | 57.5  | 80.3  |
-| SqueezeNet + Simple Bypass   |       |   |        |  60.4     | 82.5   |
-|SqueezeNet + Complex Bypass   |       |   |        |  58.8     | 82.0   |
+| SqueezeNet + Simple Bypass   | 1.2524 | 0.84681  | 96.82|60.4  | 82.5  |
+|SqueezeNet + Complex Bypass   | 1.594928 | 1.20173  |130.98 |58.8| 82.0 |
+|1.0-SqNxt-23|0.690824|0.24065|81.56|59.05|82.60|
+|1.0-SqNxt-23v5|0.909704|0.23872|73.56|59.24|82.41|
+|2.0-SqNxt-23|2.2474|0.56464|126.58|67.18|88.17|
+|2.0-SqNxt-23v5|3.11524|0.56078|98.24|67.44|88.20|
+
 
 input size: (1,3,224,224)
