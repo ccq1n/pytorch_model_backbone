@@ -1,3 +1,6 @@
+'''
+Calculate the number of parameters, time cast, and FLOPs of different networks.
+'''
 from thop import profile
 from models import *
 import time
@@ -38,13 +41,17 @@ annotations_new = {
     '1.0-SqNxt-23v5': SqNxt_x1_23v5(),
     '2.0-SqNxt-23': SqNxt_x2_23(),
     '2.0-SqNxt-23v5': SqNxt_x2_23v5(),
+    '0.7-igcv3': IGCV3(0.7),
+    '1.0-igcv3': IGCV3(),
+    '1.4-igcv3': IGCV3(1.4),
+    'PreActResNet18': PreActResNet18(),
+    'PreActResNet34': PreActResNet34(),
+    'PreActResNet50': PreActResNet50(),
+    'PreActResNet101': PreActResNet101(),
+    'PreActResNet152': PreActResNet152(),
 }
 
-annotations = {'PreActResNet18': PreActResNet18(),
-               'PreActResNet34': PreActResNet34(),
-               'PreActResNet50': PreActResNet50(),
-               'PreActResNet101': PreActResNet101(),
-               'PreActResNet152': PreActResNet152(),
+annotations = {
                'ResNeXt29_2x64d': ResNeXt29_2x64d(),
                'ResNeXt29_4x64d': ResNeXt29_4x64d(),
                'ResNeXt29_8x64d': ResNeXt29_8x64d(),
@@ -80,7 +87,7 @@ def calculate_params_scale(model, name='model', format=''):
         print("\n*** [%s] Number of params: " + str(scale) + '\t...')
         return scale
 
-def calculate_FLOPs_scale(model, input_size, multiply_adds=False, use_gpu=False):
+def calculate_FLOPs_scale(model, inputs, multiply_adds=False, use_gpu=False):
     """
     forked from FishNet @ github
     https://github.com/kevin-ssy/FishNet/blob/master/utils/profile.py
@@ -147,11 +154,10 @@ def calculate_FLOPs_scale(model, input_size, multiply_adds=False, use_gpu=False)
     multiply_adds = multiply_adds
     list_conv, list_deconv, list_bn, list_relu, list_linear, list_pooling = [], [], [], [], [], []
     foo(model)
-    input = torch.rand(2, 3, input_size, input_size)
     if USE_GPU:
-        input = input.cuda()
+        inputs = inputs.cuda()
         model = model.cuda()
-    _ = model(input)
+    _ = model(inputs)
     total_flops = (sum(list_conv) + sum(list_deconv) + sum(list_linear)
                    + sum(list_bn) + sum(list_relu) + sum(list_pooling))
     print('  + Number of FLOPs: %.5fG' % (total_flops / 1e9 / 2))
@@ -193,11 +199,10 @@ def calculate_layers_num(model, layers=('conv2d', 'classifier')):
     print('  + Number of layers: %s %s ...' % (total, strtip))
     return total
 
-def calculate_time_cost(model, insize=32, toc=1, use_gpu=False, pritout=False):
+def calculate_time_cost(model, inputs, toc=1, use_gpu=False, pritout=False):
     if not use_gpu:
-        x = torch.randn(4, 3, insize, insize)
         tic, toc = time.time(), toc
-        y = [model(x) for _ in range(toc)][0]
+        y = [model(inputs) for _ in range(toc)][0]
         toc = (time.time() - tic) / toc
         toc = toc * 1000
         print('  + time cost: %.2f ms\t' % toc)
@@ -208,8 +213,7 @@ def calculate_time_cost(model, insize=32, toc=1, use_gpu=False, pritout=False):
         return '%.2f' % toc
     else:
         assert torch.cuda.is_available()
-        x = torch.randn(4, 3, insize, insize)
-        model, x = model.cuda(), x.cuda()
+        model, x = model.cuda(), inputs.cuda()
         tic, toc = time.time(), toc
         y = [model(x) for _ in range(toc)][0]
         toc = (time.time() - tic) / toc
@@ -221,22 +225,11 @@ def calculate_time_cost(model, insize=32, toc=1, use_gpu=False, pritout=False):
             print('  + preditions: %s 个xfc.' % len(y), [yy.max(1) for yy in y])
         return '%.2f' % toc
 
-# with open("test_new.csv", "w") as csvfile:
-#     writer = csv.writer(csvfile)
-#
-#     writer.writerow(["Model", "Params", "FLOPs", "Time_cast"])
-#
-#     for key in annotations_new:
-#         params = calculate_params_scale(annotations_new[key], name=key, format='million')
-#         calculate_layers_num(annotations_new[key])
-#         FLOPs = calculate_FLOPs_scale(annotations_new[key], input_size=224, use_gpu=False, multiply_adds=False)
-#         times = calculate_time_cost(annotations_new[key], insize=224, use_gpu=False, toc=1, pritout=True)
-#         writer.writerow([key, params, FLOPs, times])
-#
-#     writer.writerow(["", "million", "G", "ms"])
-
-net = annotations_new['2.0-SqNxt-23v5']
-calculate_params_scale(net, format='million')
-calculate_FLOPs_scale(net, input_size=224, use_gpu=False, multiply_adds=False)
-calculate_layers_num(net)
-calculate_time_cost(net, insize=224, use_gpu=False, toc=1, pritout=True)
+if __name__ == '__main__':
+    inputs = torch.randn(4, 3, 224, 224)
+    for key,value in annotations_new.items():
+        net = value
+        calculate_params_scale(net, name=key, format='million')
+        calculate_FLOPs_scale(net, inputs, use_gpu=False, multiply_adds=False)
+        calculate_layers_num(net)
+        calculate_time_cost(net, inputs, use_gpu=False, toc=1, pritout=False)

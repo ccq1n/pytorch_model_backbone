@@ -1,5 +1,7 @@
 '''MobileNetV2 in PyTorch.
 
+CVPR 2018
+
 See the paper "Inverted Residuals and Linear Bottlenecks:
 Mobile Networks for Classification, Detection and Segmentation" for more details.
 '''

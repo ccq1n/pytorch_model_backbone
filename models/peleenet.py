@@ -149,9 +149,7 @@ class PeleeNet(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
-
         x = self.stage(x)
-
         # global average pooling layer
         x = F.avg_pool2d(x, kernel_size=7)
         x = x.view(x.size(0), -1)

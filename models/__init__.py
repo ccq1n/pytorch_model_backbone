@@ -19,3 +19,4 @@ from .peleenet import *
 from .dlanet import *
 from .squeezenet import *
 from .squeezenext import *
+from .igcv3 import *

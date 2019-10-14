@@ -2,6 +2,8 @@
 
 cvpr2018
 
+https://arxiv.org/abs/1707.06484
+
 Reference:
 [1] Fisher Yu Dequan Wang Evan Shelhamer Trevor Darrell
     Deep Layer Aggregation
