@@ -6,12 +6,12 @@ MobileNet and DarkNet (YOLOv2 and YOLOv3).
 ## Networks Result
 | Model       | Params/Million | FLOPs/G  | Time_cast/ms | Top-1 | Top-5 |
 | ----------- | -------------- | -------- | ------------ | ----- | ----- |
-| --- 2015 --- |
+| --- **2015** --- |
 | Vgg11       | 9.738984       | 15.02879  | 205.59       | 70.4  | 89.6  |
 | Vgg13       | 9.92388        | 22.45644 | 324.13       | 71.3  | 90.1  |
 | Vgg16       | 15.236136      | 30.78787 | 397.33       | 74.4  | 91.9  |
 | Vgg19       | 20.548392      | 39.11929 | 451.11       | 74.5  | 92.0  |
-| --- 2016 --- |
+| --- **2016** --- |
 | ResNet18    | 11.693736      | 3.65921  | 86.56       |       |       |
 | ResNet34    | 21.801896      | 7.36109  | 123.07       | 75.81 | 92.6  |
 | ResNet50    | 25.557032      | 8.27887  | 293.62       | 77.15 | 93.29 |
@@ -23,16 +23,16 @@ MobileNet and DarkNet (YOLOv2 and YOLOv3).
 | PreActResNet101   | 44.537384      | 15.71034  | 418.37 |       |       |
 | PreActResNet152   | 60.181032      | 23.14743 | 578.81 | 78.90 | 94.50 |
 | DarkNet19(YOLOv2)| 8.01556   | 10.90831  | 139.21       |       |       |
-| --- 2017 --- |
+| --- **2017** --- |
 | DenseNet121 | 7.978734       | 5.69836  | 286.45       |       |       |
 | DenseNet169 | 14.149358      | 6.75643  | 375.47       |       |       |
 | DenseNet201 | 20.013806      | 8.63084  | 486.14       |       |       |
 | DenseNet264 | 33.337582      | 11.57003 | 689.63       |       |       |
 | MobileNet   | 4.231976       | 1.14757  | 100.45        | 70.60 |       |
-| SqueezeNet  | 1.2524         | 1.69362  | 90.97       | 57.5  | 80.3  |
-| SqueezeNet + Simple Bypass   | 1.2524   | 1.69550  | 96.82|60.4| 82.5  |
-| SqueezeNet + Complex Bypass  | 1.594928 | 2.40896  |130.98 |58.8| 82.0 |
-| --- 2018 --- |
+| SqueezeNet  | 1.2524         | 1.69362  | 90.97       | 57.50  | 80.30  |
+| SqueezeNet + Simple Bypass   | 1.2524   | 1.69550  | 96.82|60.40| 82.50  |
+| SqueezeNet + Complex Bypass  | 1.594928 | 2.40896  |130.98 |58.80| 82.00 |
+| --- **2018** --- |
 | PeleeNet    | 4.51988        | 4.96656  | 237.18       | 72.6  | 90.6  |
 | 1.0-SqNxt-23  |0.690824      | 0.48130  | 69.93        | 59.05 | 82.60 |
 | 1.0-SqNxt-23v5|0.909704      | 0.47743  | 58.40        | 59.24 | 82.41 |
@@ -52,8 +52,34 @@ MobileNet and DarkNet (YOLOv2 and YOLOv3).
 | IGCV3-D (0.7) |2.490294 |0.31910|165.14 |68.45| |
 | IGCV3-D (1.0) |3.491688 |0.60653|263.80 |72.20| |
 | IGCV3-D (1.4) |6.015164 |1.11491|318.40 |74.70| |
+| --- **2019** --- |
+| EfficientNet-B0 | | | |76.30|93.20|
+| EfficientNet-B1 | | | |78.80|94.40|
+| EfficientNet-B2 | | | |79.80|94.90|
+| EfficientNet-B3 | | | |81.10|95.50|
+| EfficientNet-B4 | | | |82.60|96.30|
+| EfficientNet-B5 | | | |83.30|96.70|
+| EfficientNet-B6 | | | |84.00|96.90|
+| EfficientNet-B7 | | | |84.40|97.10|
 
-input size: (1,3,224,224)
+### GoogleNet Inception V1-V4
+
+| Model       | Params/Million | FLOPs/G  | Time_cast/ms | Top-1 | Top-5 |
+| ----------- | -------------- | -------- | ------------ | ----- | ----- |
+| --- **2014** --- |
+| GoogleNet V1|6.998552 |3.20387   |192.64|71.00|90.80|
+| GoogleNet V1_Bn|7.013112|3.21032 |139.42|73.20||
+| --- **2015** --- |
+| GoogleNet V2|11.204936|4.08437   |127.71|76.60||
+| GoogleNet V3|23.834568|7.60887   |208.01|78.80|94.40|
+| --- **2016** --- |
+| GoogleNet V4|42.679816|12.31977  |324.36|80.00|95.10|
+
+Note: GoogleNet V1 does not include the Bn layer, but after the first two layers of convolution, LocalResponseNorm is added, 
+this operation will increase the calculation time of the model. So we found that GoogleNet V1 is slower than GoogleNet V1_Bn.
+
+For Time_cast, we set the input size: (1, 3, 224, 224), and then test multiple rounds of averaging 
+(time is susceptible to interference from CPU operating state).
 
 ## ImageNet数据准备
 ### Download

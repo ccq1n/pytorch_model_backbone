@@ -7,48 +7,53 @@ import time
 import csv
 
 annotations_new = {
-    'VGG11': VGG('VGG11'),
-    'VGG13': VGG('VGG13'),
-    'VGG16': VGG('VGG16'),
-    'VGG19': VGG('VGG19'),
-    'ResNet18': ResNet18(),
-    'ResNet34': ResNet34(),
-    'ResNet50': ResNet50(),
-    'ResNet101': ResNet101(),
-    'ResNet152': ResNet152(),
-    'MobileNetV2': MobileNetV2(),
-    'DarkNet53': DarkNet_53(),
-    'DarkNet19': DarkNet_19(),
-    'MobileNet': MobileNet(),
-    'PeleeNet': PeleeNet(),
-    'DenseNet121': DenseNet121(),
-    'DenseNet169': DenseNet169(),
-    'DenseNet201': DenseNet201(),
-    'DenseNet264': DenseNet264(),
-    'DLANet34': DLANet34(),
-    'DLANet46_C': DLANet46_C(),
-    'DLANet60': DLANet60(),
-    'DLANet102': DLANet102(),
-    'DLANet169': DLANet169(),
-    'DLANetX46_C': DLANetX46_C(),
-    'DLANetX60_C': DLANetX60_C(),
-    'DLANetX60': DLANetX60(),
-    'DLANetX102': DLANetX102(),
-    'SqueezeNet': SqueezeNet(),
-    'SqueezeNet_Simple': SqueezeNet_Simple(),
-    'SqueezeNet_Complex': SqueezeNet_Complex(),
-    '1.0-SqNxt-23': SqNxt_x1_23(),
-    '1.0-SqNxt-23v5': SqNxt_x1_23v5(),
-    '2.0-SqNxt-23': SqNxt_x2_23(),
-    '2.0-SqNxt-23v5': SqNxt_x2_23v5(),
-    '0.7-igcv3': IGCV3(0.7),
-    '1.0-igcv3': IGCV3(),
-    '1.4-igcv3': IGCV3(1.4),
-    'PreActResNet18': PreActResNet18(),
-    'PreActResNet34': PreActResNet34(),
-    'PreActResNet50': PreActResNet50(),
-    'PreActResNet101': PreActResNet101(),
-    'PreActResNet152': PreActResNet152(),
+    'GoogleNetV1':GoogleNetV1(),
+    'GooglrNetV1_Bn':GoogleNetV1_Bn(),
+    'GoogleNetV2':GoogleNetV2(),
+    'GoogleNetV3':GoogleNetV3(),
+    'GoogleNetV4':GoogleNetV4(),
+    # 'VGG11': VGG('VGG11'),
+    # 'VGG13': VGG('VGG13'),
+    # 'VGG16': VGG('VGG16'),
+    # 'VGG19': VGG('VGG19'),
+    # 'ResNet18': ResNet18(),
+    # 'ResNet34': ResNet34(),
+    # 'ResNet50': ResNet50(),
+    # 'ResNet101': ResNet101(),
+    # 'ResNet152': ResNet152(),
+    # 'MobileNetV2': MobileNetV2(),
+    # 'DarkNet53': DarkNet_53(),
+    # 'DarkNet19': DarkNet_19(),
+    # 'MobileNet': MobileNet(),
+    # 'PeleeNet': PeleeNet(),
+    # 'DenseNet121': DenseNet121(),
+    # 'DenseNet169': DenseNet169(),
+    # 'DenseNet201': DenseNet201(),
+    # 'DenseNet264': DenseNet264(),
+    # 'DLANet34': DLANet34(),
+    # 'DLANet46_C': DLANet46_C(),
+    # 'DLANet60': DLANet60(),
+    # 'DLANet102': DLANet102(),
+    # 'DLANet169': DLANet169(),
+    # 'DLANetX46_C': DLANetX46_C(),
+    # 'DLANetX60_C': DLANetX60_C(),
+    # 'DLANetX60': DLANetX60(),
+    # 'DLANetX102': DLANetX102(),
+    # 'SqueezeNet': SqueezeNet(),
+    # 'SqueezeNet_Simple': SqueezeNet_Simple(),
+    # 'SqueezeNet_Complex': SqueezeNet_Complex(),
+    # '1.0-SqNxt-23': SqNxt_x1_23(),
+    # '1.0-SqNxt-23v5': SqNxt_x1_23v5(),
+    # '2.0-SqNxt-23': SqNxt_x2_23(),
+    # '2.0-SqNxt-23v5': SqNxt_x2_23v5(),
+    # '0.7-igcv3': IGCV3(0.7),
+    # '1.0-igcv3': IGCV3(),
+    # '1.4-igcv3': IGCV3(1.4),
+    # 'PreActResNet18': PreActResNet18(),
+    # 'PreActResNet34': PreActResNet34(),
+    # 'PreActResNet50': PreActResNet50(),
+    # 'PreActResNet101': PreActResNet101(),
+    # 'PreActResNet152': PreActResNet152(),
 }
 
 annotations = {
@@ -56,7 +61,6 @@ annotations = {
                'ResNeXt29_4x64d': ResNeXt29_4x64d(),
                'ResNeXt29_8x64d': ResNeXt29_8x64d(),
                'ResNeXt29_32x4d': ResNeXt29_32x4d(),
-               'GoogLeNet': GoogLeNet(),
                'SENet18': SENet18(),
                'EfficientNetB0': EfficientNetB0(),
                'ShuffleNetG2': ShuffleNetG2(),
@@ -205,12 +209,12 @@ def calculate_time_cost(model, inputs, toc=1, use_gpu=False, pritout=False):
         y = [model(inputs) for _ in range(toc)][0]
         toc = (time.time() - tic) / toc
         toc = toc * 1000
-        print('  + time cost: %.2f ms\t' % toc)
-        if not isinstance(y, (list, tuple)):
-            y = [y]
-        if pritout:
-            print('  + preditions: %s xfc.' % len(y), [yy.max(1) for yy in y])
-        return '%.2f' % toc
+        # print('  + time cost: %.2f ms\t' % toc)
+        # if not isinstance(y, (list, tuple)):
+        #     y = [y]
+        # if pritout:
+        #     print('  + preditions: %s xfc.' % len(y), [yy.max(1) for yy in y])
+        return toc
     else:
         assert torch.cuda.is_available()
         model, x = model.cuda(), inputs.cuda()
@@ -218,12 +222,12 @@ def calculate_time_cost(model, inputs, toc=1, use_gpu=False, pritout=False):
         y = [model(x) for _ in range(toc)][0]
         toc = (time.time() - tic) / toc
         toc = toc * 1000
-        print('  + time cost: %.2f ms\t' % toc)
-        if not isinstance(y, (list, tuple)):
-            y = [y]
-        if pritout:
-            print('  + preditions: %s 个xfc.' % len(y), [yy.max(1) for yy in y])
-        return '%.2f' % toc
+        # print('  + time cost: %.2f ms\t' % toc)
+        # if not isinstance(y, (list, tuple)):
+        #     y = [y]
+        # if pritout:
+        #     print('  + preditions: %s 个xfc.' % len(y), [yy.max(1) for yy in y])
+        return toc
 
 if __name__ == '__main__':
     inputs = torch.randn(4, 3, 224, 224)
@@ -232,4 +236,7 @@ if __name__ == '__main__':
         calculate_params_scale(net, name=key, format='million')
         calculate_FLOPs_scale(net, inputs, use_gpu=False, multiply_adds=False)
         calculate_layers_num(net)
-        calculate_time_cost(net, inputs, use_gpu=False, toc=1, pritout=False)
+        sum_time = 0
+        for i in range(20):
+            sum_time += calculate_time_cost(net, inputs, use_gpu=False, toc=1, pritout=False)
+        print('  + time cost: %.2f ms\t' % (sum_time/20))

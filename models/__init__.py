@@ -4,7 +4,10 @@ from .lenet import *
 from .senet import *
 from .pnasnet import *
 from .densenet import *
-from .googlenet import *
+from .googlenet_v1 import *
+from .googlenet_v2 import *
+from .googlenet_v3 import *
+from .googlenet_v4 import *
 from .shufflenet import *
 from .shufflenetv2 import *
 from .resnet import *
