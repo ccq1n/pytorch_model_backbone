@@ -136,3 +136,11 @@ http://www.image-net.org/challenges/LSVRC/2012/downloads
 
 数据增强：取图片时随机取，然后将图片放缩为短边为256，然后再随机裁剪224x224的图片，
 再把每个通道减去相应通道的平均值，随机左右翻转。
+
+## CROP-1, CROP-5 and CROP-10 test methods for ImageNet validation set.
+
+Due to the existence of a fully connected layers, we neeed to limit the size of the images in the input network. Set the size of the image input neural network to 224x224, but the size of the image in the test set is not fixed. It is difficult to completely cover the information of the target object in the image by only the center clipping method, so we crop the image at multiple locations.
+
+One-crop of an image is created by cropping one 224 × 224 regions from the center of a 256 × 256 image; Five-crop is five 224 × 224 sized image regions cropped from top left, top right, bottom left, bottom right and center of original image; Ten-crop is horizontally flipping each cropped region base on the results of five-crop.
+
+Use Pytorch,
