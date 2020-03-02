@@ -20,20 +20,20 @@ annotations_new = {
     # 'EfficientNetB5':EfficientNet_B5(),
     # 'EfficientNetB6':EfficientNet_B6(),
     # 'EfficientNetB7':EfficientNet_B7(),
-    'ResNeXt50_2x40d': ResNeXt50(2, 40),
-    'ResNeXt50_4x24d': ResNeXt50(4, 24),
-    'ResNeXt50_8x14d': ResNeXt50(8, 14),
-    'ResNeXt50_32x4d': ResNeXt50(32, 4),
-    'ResNeXt101_2x40d': ResNeXt101(2, 40),
-    'ResNeXt101_4x24d': ResNeXt101(4, 24),
-    'ResNeXt101_8x14d': ResNeXt101(8, 14),
-    'ResNeXt101_32x4d': ResNeXt101(32, 4),
+    # 'ResNeXt50_2x40d': ResNeXt50(2, 40),
+    # 'ResNeXt50_4x24d': ResNeXt50(4, 24),
+    # 'ResNeXt50_8x14d': ResNeXt50(8, 14),
+    # 'ResNeXt50_32x4d': ResNeXt50(32, 4),
+    # 'ResNeXt101_2x40d': ResNeXt101(2, 40),
+    # 'ResNeXt101_4x24d': ResNeXt101(4, 24),
+    # 'ResNeXt101_8x14d': ResNeXt101(8, 14),
+    # 'ResNeXt101_32x4d': ResNeXt101(32, 4),
     # 'VGG11': VGG('VGG11'),
     # 'VGG13': VGG('VGG13'),
     # 'VGG16': VGG('VGG16'),
     # 'VGG19': VGG('VGG19'),
-    # 'ResNet18': ResNet18(),
-    # 'ResNet34': ResNet34(),
+    'ResNet18': ResNet18(),
+    'ResNet34': ResNet34(),
     # 'ResNet50': ResNet50(),
     # 'ResNet101': ResNet101(),
     # 'ResNet152': ResNet152(),
@@ -70,6 +70,8 @@ annotations_new = {
     # 'PreActResNet50': PreActResNet50(),
     # 'PreActResNet101': PreActResNet101(),
     # 'PreActResNet152': PreActResNet152(),
+    'DPN92': DPN92(),
+    'DPN98': DPN98()
 }
 
 annotations = {
@@ -77,8 +79,6 @@ annotations = {
                'ShuffleNetG2': ShuffleNetG2(),
                'ShuffleNetG3': ShuffleNetG3(),
                'ShuffleNetV2': ShuffleNetV2(1),
-               'DPN26': DPN26(),
-               'DPN92': DPN92(),
 }
 
 def calculate_params_scale(model, name='model', format=''):
