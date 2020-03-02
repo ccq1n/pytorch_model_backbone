@@ -89,7 +89,7 @@ MobileNet and DarkNet (YOLOv2 and YOLOv3).
 Note: GoogleNet V1 does not include the Bn layer, but after the first two layers of convolution, LocalResponseNorm is added, 
 this operation will increase the calculation time of the model. So we found that GoogleNet V1 is slower than GoogleNet V1_Bn.
 
-For Time_cast, we set the input size: (1, 3, 224, 224), and then test multiple rounds of averaging 
+For Time_cast, we set the input size: (4, 3, 224, 224), and then test multiple rounds of averaging 
 (time is susceptible to interference from CPU operating state).
 
 ## ImageNet数据准备
