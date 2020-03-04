@@ -42,10 +42,11 @@ annotations_new = {
     # 'DarkNet19': DarkNet_19(),
     # 'MobileNet': MobileNet(),
     # 'PeleeNet': PeleeNet(),
-    # 'DenseNet121': DenseNet121(),
-    # 'DenseNet169': DenseNet169(),
-    # 'DenseNet201': DenseNet201(),
-    # 'DenseNet264': DenseNet264(),
+    'DenseNet121': DenseNet121(),
+    'DenseNet169': DenseNet169(),
+    'DenseNet201': DenseNet201(),
+    'DenseNet264': DenseNet264(),
+    'DenseNet161': DenseNet161(),
     # 'DLANet34': DLANet34(),
     # 'DLANet46_C': DLANet46_C(),
     # 'DLANet60': DLANet60(),
@@ -70,8 +71,8 @@ annotations_new = {
     # 'PreActResNet50': PreActResNet50(),
     # 'PreActResNet101': PreActResNet101(),
     # 'PreActResNet152': PreActResNet152(),
-    'DPN92': DPN92(),
-    'DPN98': DPN98()
+    # 'DPN92': DPN92(),
+    # 'DPN98': DPN98()
 }
 
 annotations = {
