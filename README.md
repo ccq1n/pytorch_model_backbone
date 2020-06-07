@@ -3,6 +3,8 @@ The project is based on pytorch and integrates the current mainstream
 network architecture, including VGGnet, ResNet, DenseNet, 
 MobileNet and DarkNet (YOLOv2 and YOLOv3).
 
+This project will fully comply with the relevant details mentioned in the paper. Since the structural details in some papers are incomplete, we have added some personal insights. The input size of all networks is uniformly set to (224, 224, 3) (H, W, C).
+
 ## Networks Result
 | Model       | Params/Million | FLOPs/G  | Time_cast/ms | Top-1 | Top-5 |
 | ----------- | -------------- | -------- | ------------ | ----- | ----- |
