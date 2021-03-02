@@ -1,10 +1,7 @@
-''' EfficientNet in Pytorch
-
+'''
+EfficientNet in Pytorch
 ICML 2019
-
-Reference:
-[1] Mingxing Tan, Quoc V. Le
-    EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks
+EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks
 '''
 
 import re

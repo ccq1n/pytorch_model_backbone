@@ -1,1 +1,3 @@
 *.sh linguist-language=python
+
+.idea/
