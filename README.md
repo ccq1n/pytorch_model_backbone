@@ -108,6 +108,10 @@ http://www.image-net.org/challenges/LSVRC/2012/downloads
  Validation images (all tasks). 6.3GB. MD5: 29b22e2961454d5413ddabcf34fc5622
 
 ### 安装
+方法一：https://github.com/pytorch/examples/blob/main/imagenet/extract_ILSVRC.sh
+
+方法二：
+
 解压下载的数据文件，这可能需要一段时间
 
     tar xvf ILSVRC2012_img_train.tar -C ./train
